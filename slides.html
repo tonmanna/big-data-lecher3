@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Data Workshop — สไลด์ประกอบการสอน</title>
+<style>
+  :root{
+    --bg:#0f172a; --bg2:#1e293b; --card:#1e293b;
+    --accent:#38bdf8; --accent2:#a78bfa; --green:#34d399;
+    --text:#e2e8f0; --muted:#94a3b8; --border:#334155;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,"Segoe UI","Sarabun",system-ui,sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e1b4b);
+    color:var(--text);overflow:hidden;
+  }
+  .deck{height:100vh;display:flex;align-items:center;justify-content:center}
+  .slide{
+    display:none;width:min(960px,92vw);max-height:88vh;overflow:auto;
+    background:rgba(30,41,59,.6);border:1px solid var(--border);
+    border-radius:24px;padding:48px 56px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);backdrop-filter:blur(8px);
+    animation:fade .4s ease;
+  }
+  .slide.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  h1{font-size:2.6rem;line-height:1.2;margin-bottom:18px;
+     background:linear-gradient(90deg,var(--accent),var(--accent2));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  h2{font-size:2rem;margin-bottom:22px;color:#fff}
+  h2 .num{color:var(--accent);font-size:1.1rem;display:block;margin-bottom:6px;letter-spacing:2px}
+  p{font-size:1.2rem;line-height:1.7;color:var(--muted);margin-bottom:14px}
+  ul{list-style:none;margin:10px 0}
+  li{font-size:1.25rem;line-height:1.9;padding-left:34px;position:relative}
+  li::before{content:"▹";position:absolute;left:6px;color:var(--accent);font-weight:bold}
+  .lead{font-size:1.4rem;color:var(--text)}
+  .tag{display:inline-block;background:rgba(56,189,248,.15);color:var(--accent);
+       border:1px solid rgba(56,189,248,.35);border-radius:999px;
+       padding:5px 16px;font-size:1rem;margin:0 8px 10px 0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+  .card{background:rgba(15,23,42,.6);border:1px solid var(--border);
+        border-radius:16px;padding:20px;text-align:center}
+  .card .ico{font-size:2.4rem;display:block;margin-bottom:10px}
+  .card b{color:#fff;font-size:1.15rem}
+  .card span{display:block;color:var(--muted);font-size:.95rem;margin-top:6px}
+  pre{background:#0b1120;border:1px solid var(--border);border-radius:12px;
+      padding:18px 20px;overflow:auto;margin:16px 0}
+  code{font-family:"SFMono-Regular",Consolas,monospace;font-size:1.05rem;color:var(--green)}
+  .flow{font-size:1.15rem;text-align:center;line-height:2.2;color:var(--text)}
+  .flow b{color:var(--accent)}
+  table{width:100%;border-collapse:collapse;margin-top:18px;font-size:1.05rem}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border)}
+  th{color:var(--accent)}
+  td:first-child{font-weight:bold;color:#fff}
+  .center{text-align:center}
+  .hint{font-size:1.05rem;color:var(--muted);margin-top:24px;font-style:italic}
+  /* controls */
+  .bar{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;
+       justify-content:space-between;padding:16px 28px;color:var(--muted);font-size:.95rem}
+  .btn{background:var(--card);border:1px solid var(--border);color:var(--text);
+       border-radius:10px;padding:9px 16px;cursor:pointer;font-size:1rem}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .progress{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+  .quote{border-left:4px solid var(--accent2);padding-left:20px;color:var(--text);font-size:1.25rem;font-style:italic}
+  .robot{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.35);
+          border-radius:14px;padding:18px 22px;margin-top:20px;font-size:1.1rem}
+  .robot b{color:var(--accent2)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck">
+
+  <!-- 1 -->
+  <section class="slide active">
+    <div class="center">
+      <span class="tag">Workshop • สำหรับผู้เริ่มต้น</span>
+      <h1>สร้าง Mini Data Platform<br>ด้วยตัวเอง</h1>
+      <p class="lead">เรียน Big Data ผ่านการลงมือทำจริง ธีมร้านค้าออนไลน์ 🛒</p>
+      <div class="grid" style="margin-top:30px">
+        <div class="card"><span class="ico">🐘</span><b>PostgreSQL</b><span>ข้อมูลหลัก</span></div>
+        <div class="card"><span class="ico">🍃</span><b>MongoDB</b><span>รีวิว/แคตตาล็อก</span></div>
+        <div class="card"><span class="ico">🔎</span><b>ElasticSearch</b><span>ค้นหา</span></div>
+      </div>
+      <p class="hint">+ 🔄 Airbyte &nbsp;•&nbsp; 🐳 Docker &nbsp;•&nbsp; 🤖 Claude Code</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <h2><span class="num">ภาพรวม</span>Stack นี้เล่าเรื่องอะไร?</h2>
+    <p>ร้านค้าจริงมีข้อมูลกระจายหลายที่ เราจะประกอบมันเข้าด้วยกัน</p>
+    <div class="flow" style="margin-top:24px">
+      <b>PostgreSQL</b> (ลูกค้า·สินค้า·ออเดอร์)<br>↓<br>
+      <b>Airbyte</b> ดึงข้อมูลอัตโนมัติ<br>↓<br>
+      <b>ElasticSearch</b> ทำหน้าค้นหาให้เร็ว<br><br>
+      <b>MongoDB</b> เก็บรีวิว + สเปคที่ยืดหยุ่น
+    </div>
+    <p class="hint">ทั้งหมดรันบน 🐳 Docker และมี 🤖 Claude Code เป็นผู้ช่วยตลอดทาง</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <h2><span class="num">เครื่องมือ</span>ใครทำหน้าที่อะไร</h2>
+    <table>
+      <tr><th>เครื่องมือ</th><th>คืออะไร</th><th>ใช้ทำอะไร</th></tr>
+      <tr><td>🐘 PostgreSQL</td><td>Relational DB</td><td>ลูกค้า สินค้า ออเดอร์</td></tr>
+      <tr><td>🍃 MongoDB</td><td>Document DB</td><td>รีวิว แคตตาล็อก</td></tr>
+      <tr><td>🔎 ElasticSearch</td><td>Search engine</td><td>ค้นหาสินค้า full-text</td></tr>
+      <tr><td>🔄 Airbyte</td><td>ELT tool</td><td>ย้ายข้อมูลอัตโนมัติ</td></tr>
+      <tr><td>🐳 Docker</td><td>Container runtime</td><td>ยก stack ด้วยคำสั่งเดียว</td></tr>
+      <tr><td>🤖 Claude Code</td><td>AI assistant</td><td>เขียน/แก้/อธิบายโค้ด</td></tr>
+    </table>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 1</span>🐳 Docker — ยก stack ด้วยคำสั่งเดียว</h2>
+    <p>Container = "กล่องสำเร็จรูป" ที่มีโปรแกรม + ทุกอย่างพร้อมรัน ไม่ต้องลงทีละตัว</p>
+    <pre><code>cp .env.example .env
+docker compose up -d      # เปิดทุก service
+docker compose ps         # เช็คสถานะ</code></pre>
+    <p>เปิดหน้าเว็บได้เลย: Adminer :8080 • Mongo Express :8081 • Kibana :5601</p>
+    <div class="robot">🤖 <b>ถาม Claude:</b> "elasticsearch ขึ้น unhealthy ช่วยดู log แล้วบอกสาเหตุ"</div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 2</span>🐘 PostgreSQL — ตารางและ JOIN</h2>
+    <p>ข้อมูลเก็บเป็นตารางที่เชื่อมกันด้วยความสัมพันธ์ (relation)</p>
+    <pre><code>-- ยอดขายรวมของลูกค้าแต่ละคน
+SELECT c.full_name, SUM(oi.quantity * oi.unit_price) AS total
+FROM customers c
+JOIN orders o       ON c.customer_id = o.customer_id
+JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY c.full_name
+ORDER BY total DESC;</code></pre>
+    <div class="robot">🤖 <b>ถาม Claude:</b> "หาลูกค้าที่ใช้เงินมากสุด 3 คน ไม่นับออเดอร์ที่ cancelled"</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 3</span>🍃 MongoDB — ข้อมูลแบบเอกสาร</h2>
+    <p>แต่ละ document มี field ไม่เท่ากันได้ และเก็บข้อมูลซ้อนกัน (nested) ได้</p>
+    <pre><code>// คะแนนเฉลี่ยและจำนวนรีวิวต่อสินค้า
+db.reviews.aggregate([
+  { $group: {
+      _id: "$product_name",
+      avg_rating:  { $avg: "$rating" },
+      review_count:{ $sum: 1 }
+  }},
+  { $sort: { avg_rating: -1 } }
+])</code></pre>
+    <div class="robot">🤖 <b>ถาม Claude:</b> "นับว่าแต่ละ tag ในรีวิวถูกใช้กี่ครั้ง"</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 4</span>🔎 ElasticSearch — ค้นหาแบบฉลาด</h2>
+    <p>ช่องค้นหาที่ SQL ทำได้ไม่ดี — เร็ว + จัดอันดับความเกี่ยวข้องให้</p>
+    <pre><code>GET products/_search
+{
+  "query": {
+    "bool": {
+      "must":   { "match": { "name": "keyboard" } },
+      "filter": [{ "range": { "price": { "lte": 3000 } } }]
+    }
+  }
+}</code></pre>
+    <div class="robot">🤖 <b>ถาม Claude:</b> "หาหนังสือที่มีคำว่า data ในชื่อหรือคำอธิบาย"</div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 5</span>⚖️ ใช้ฐานข้อมูลไหนเมื่อไหร่?</h2>
+    <table>
+      <tr><th></th><th>🐘 Postgres</th><th>🍃 Mongo</th><th>🔎 Elastic</th></tr>
+      <tr><td>เก่งเรื่อง</td><td>ความถูกต้อง JOIN</td><td>โครงสร้างยืดหยุ่น</td><td>ค้นหาเร็ว</td></tr>
+      <tr><td>ในร้านเรา</td><td>ออเดอร์ เงิน สต็อก</td><td>รีวิว สเปค</td><td>ช่องค้นหา</td></tr>
+    </table>
+    <p class="hint">ไม่มี "ดีที่สุด" มีแต่ "เหมาะกับงานไหน" — ระบบจริงมักใช้หลายตัวร่วมกัน</p>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 6</span>🔄 Airbyte — ท่อส่งข้อมูลอัตโนมัติ</h2>
+    <p>ตั้งครั้งเดียว มันดึงข้อมูลจาก <b>Source → Destination</b> ให้ตามรอบ</p>
+    <pre><code>curl -LsfS https://get.airbyte.com | bash -
+abctl local install        # เปิด Airbyte
+abctl local credentials    # เอารหัสเข้า http://localhost:8000</code></pre>
+    <p>Source = PostgreSQL ของเรา → Destination เริ่มที่ Local JSON (ง่ายสุด)</p>
+    <div class="robot">🤖 <b>ถาม Claude:</b> "ต่อ Source Postgres ไม่ติด ขึ้น connection refused เช็คอะไรบ้าง"</div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 7</span>🔗 ต่อทุกอย่างเป็น Pipeline เดียว</h2>
+    <div class="flow">
+      ลูกค้าสั่งซื้อ → บันทึกที่ <b>PostgreSQL</b><br>↓<br>
+      <b>Airbyte</b> ดึง products ไป<br>↓<br>
+      <b>ElasticSearch</b> ทำ index ค้นหา<br>↓<br>
+      ผู้ใช้ค้นหาสินค้าบนหน้าเว็บได้ทันที ✨
+    </div>
+    <p class="hint">Postgres = แหล่งความจริง • Airbyte = สายพาน • Elastic = ชั้นค้นหา</p>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <h2><span class="num">โมดูล 8</span>🎓 โปรเจกต์จบ</h2>
+    <p>รวมทุกอย่างที่เรียนมา สร้างระบบข้อมูลร้านของคุณเอง (เลือกทำ 3 ข้อ)</p>
+    <ul>
+      <li>รายงานยอดขายแยกตามหมวด (SQL)</li>
+      <li>หา top reviewer (MongoDB aggregation)</li>
+      <li>หน้าค้นหาสินค้า + กรองราคา (ElasticSearch)</li>
+      <li>sync ข้อมูลด้วย Airbyte ไป destination</li>
+      <li>ตรวจ data quality / เพิ่ม dataset ของตัวเอง</li>
+    </ul>
+    <div class="robot">🤖 ใช้ Claude Code เป็นคู่หู: ออกแบบ → เขียนโค้ด → debug → อธิบาย</div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide center">
+    <h1>เริ่มกันเลย! 🚀</h1>
+    <p class="lead">เปิด terminal ในโฟลเดอร์ workshop แล้วพิมพ์</p>
+    <pre style="text-align:left;display:inline-block"><code>cp .env.example .env
+docker compose up -d
+claude</code></pre>
+    <p class="quote" style="margin-top:30px">"แทนที่จะจำคำสั่ง — ให้สั่งงานเป็นภาษาคน แล้วให้ Claude ช่วยทำ"</p>
+    <p class="hint">รายละเอียดแต่ละโมดูลอยู่ในโฟลเดอร์ <code style="color:var(--green)">modules/</code></p>
+  </section>
+
+</div>
+
+<div class="bar">
+  <button class="btn" onclick="prev()">← ก่อนหน้า</button>
+  <span id="counter">1 / 12</span>
+  <button class="btn" onclick="next()">ถัดไป →</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
+    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+  }
+  function next(){show(i+1)}
+  function prev(){show(i-1)}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')next();
+    if(e.key==='ArrowLeft'||e.key==='PageUp')prev();
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(slides.length-1);
+  });
+  show(0);
+</script>
+</body>
+</html>

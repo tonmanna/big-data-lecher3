@@ -1,0 +1,30 @@
+{"index":{"_id":"1"}}
+{"product_id":1,"name":"Wireless Headphones","category":"Electronics","brand":"SoundMax","price":1290.00,"description":"หูฟังไร้สาย เสียงดี แบตอึด 30 ชั่วโมง ตัดเสียงรบกวน","tags":["audio","bluetooth","wireless"]}
+{"index":{"_id":"2"}}
+{"product_id":2,"name":"USB-C Charger 65W","category":"Electronics","brand":"PowerGo","price":690.00,"description":"ที่ชาร์จเร็ว 65 วัตต์ ชาร์จโน้ตบุ๊กและมือถือได้","tags":["charger","usb-c","fast-charge"]}
+{"index":{"_id":"3"}}
+{"product_id":3,"name":"Mechanical Keyboard","category":"Electronics","brand":"KeyForge","price":2490.00,"description":"คีย์บอร์ดแมคคานิคอล switch brown ไฟ RGB เหมาะกับสาย dev และเกมเมอร์","tags":["keyboard","mechanical","gaming","rgb"]}
+{"index":{"_id":"4"}}
+{"product_id":4,"name":"4K Webcam","category":"Electronics","brand":"ClearView","price":1990.00,"description":"กล้องเว็บแคมความละเอียด 4K เหมาะกับประชุมออนไลน์และสตรีม","tags":["webcam","4k","streaming"]}
+{"index":{"_id":"5"}}
+{"product_id":5,"name":"The Pragmatic Programmer","category":"Books","brand":"Addison-Wesley","price":890.00,"description":"หนังสือคลาสสิกสำหรับนักพัฒนาซอฟต์แวร์ทุกคน","tags":["book","programming","classic"]}
+{"index":{"_id":"6"}}
+{"product_id":6,"name":"Clean Code","category":"Books","brand":"Prentice Hall","price":790.00,"description":"แนวทางเขียนโค้ดให้สะอาด อ่านง่าย ดูแลรักษาง่าย","tags":["book","programming","best-practice"]}
+{"index":{"_id":"7"}}
+{"product_id":7,"name":"Designing Data-Intensive Applications","category":"Books","brand":"O'Reilly","price":1290.00,"description":"หนังสือเรื่องระบบข้อมูลขนาดใหญ่ ฐานข้อมูล และ distributed systems","tags":["book","data","systems","big-data"]}
+{"index":{"_id":"8"}}
+{"product_id":8,"name":"Ceramic Coffee Mug","category":"Home & Kitchen","brand":"DailyCup","price":250.00,"description":"แก้วกาแฟเซรามิก ลายน่ารัก จับถนัดมือ","tags":["kitchen","coffee","ceramic"]}
+{"index":{"_id":"9"}}
+{"product_id":9,"name":"Stainless Water Bottle","category":"Home & Kitchen","brand":"HydroLife","price":450.00,"description":"ขวดน้ำสเตนเลส เก็บความเย็นได้ 24 ชั่วโมง ความจุ 750 มล.","tags":["kitchen","bottle","stainless"]}
+{"index":{"_id":"10"}}
+{"product_id":10,"name":"Non-stick Frying Pan","category":"Home & Kitchen","brand":"CookEasy","price":690.00,"description":"กระทะเคลือบกันติด ทำอาหารง่าย ล้างสะดวก","tags":["kitchen","cookware","non-stick"]}
+{"index":{"_id":"11"}}
+{"product_id":11,"name":"Cotton T-Shirt","category":"Fashion","brand":"BasicWear","price":390.00,"description":"เสื้อยืดผ้าฝ้าย ใส่สบาย ระบายอากาศดี","tags":["fashion","tshirt","cotton"]}
+{"index":{"_id":"12"}}
+{"product_id":12,"name":"Running Shoes","category":"Fashion","brand":"SpeedFit","price":1890.00,"description":"รองเท้าวิ่ง น้ำหนักเบา รองรับแรงกระแทกดี","tags":["fashion","shoes","running","sport"]}
+{"index":{"_id":"13"}}
+{"product_id":13,"name":"Denim Jacket","category":"Fashion","brand":"UrbanStyle","price":1490.00,"description":"แจ็คเก็ตยีนส์ ทรงสวย ใส่ได้ทุกโอกาส","tags":["fashion","jacket","denim"]}
+{"index":{"_id":"14"}}
+{"product_id":14,"name":"Yoga Mat","category":"Sports","brand":"ZenFlex","price":590.00,"description":"เสื่อโยคะ กันลื่น หนานุ่ม พกพาง่าย","tags":["sport","yoga","fitness"]}
+{"index":{"_id":"15"}}
+{"product_id":15,"name":"Dumbbell Set 10kg","category":"Sports","brand":"IronCore","price":990.00,"description":"ชุดดัมเบล 10 กิโลกรัม ปรับน้ำหนักได้ ออกกำลังกายที่บ้าน","tags":["sport","fitness","strength"]}
