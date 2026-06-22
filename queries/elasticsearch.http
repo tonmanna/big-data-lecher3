@@ -1,0 +1,66 @@
+### ============================================================
+###  ชุด query ตัวอย่าง — ElasticSearch
+###  วาง query เหล่านี้ใน Kibana → Dev Tools (http://localhost:5601)
+###  หรือแปลงเป็น curl (ดูตัวอย่าง curl ในโมดูล 4)
+###  อย่าลืมโหลดข้อมูลก่อน:  make load
+### ============================================================
+
+### [1] นับจำนวนสินค้าใน index
+GET products/_count
+
+### [2] ดูสินค้าทั้งหมด (10 รายการแรก)
+GET products/_search
+{
+  "size": 10,
+  "query": { "match_all": {} }
+}
+
+### [3] ค้นหา full-text คำว่า "ไร้สาย"
+GET products/_search
+{
+  "query": { "match": { "description": "ไร้สาย" } }
+}
+
+### [4] ค้นชื่อ + กรองหมวด + ช่วงราคา
+GET products/_search
+{
+  "query": {
+    "bool": {
+      "must":   { "match": { "name": "keyboard" } },
+      "filter": [
+        { "term":  { "category": "Electronics" } },
+        { "range": { "price": { "lte": 3000 } } }
+      ]
+    }
+  }
+}
+
+### [5] ค้นได้ทั้งชื่อและคำอธิบาย (multi_match)
+GET products/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "data",
+      "fields": ["name", "description"]
+    }
+  }
+}
+
+### [6] นับจำนวนสินค้าต่อหมวด (aggregation)
+GET products/_search
+{
+  "size": 0,
+  "aggs": { "by_category": { "terms": { "field": "category" } } }
+}
+
+### [7] ราคาเฉลี่ยต่อหมวด
+GET products/_search
+{
+  "size": 0,
+  "aggs": {
+    "by_category": {
+      "terms": { "field": "category" },
+      "aggs": { "avg_price": { "avg": { "field": "price" } } }
+    }
+  }
+}

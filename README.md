@@ -57,6 +57,9 @@ docker compose ps
 bash data/seed/elasticsearch/load.sh
 ```
 
+> 💡 **ขี้เกียจพิมพ์ยาว?** มี `Makefile` ให้แล้ว — พิมพ์ `make up` → `make load` → `make verify`
+> ดูคำสั่งทั้งหมดด้วย `make help`
+
 > PostgreSQL และ MongoDB จะโหลดข้อมูลตัวอย่างให้อัตโนมัติตอนเปิดครั้งแรก
 
 ### 🔗 หน้าเว็บที่เปิดได้หลัง `docker compose up`
@@ -94,6 +97,19 @@ bash data/seed/elasticsearch/load.sh
 | 6 | [Airbyte](modules/06-airbyte/README.md) | ย้ายข้อมูลระหว่างระบบ |
 | 7 | [End-to-End Pipeline](modules/07-pipeline/README.md) | ต่อทุกอย่างเป็น flow เดียว |
 | 8 | [โปรเจกต์จบ](modules/08-project/README.md) | สร้าง mini data platform เอง |
+
+---
+
+## 🧰 ของแถมในรีโป
+
+| ไฟล์ / โฟลเดอร์ | ใช้ทำอะไร |
+|----------------|----------|
+| `Makefile` | คำสั่งลัด (`make up/down/load/verify/quality/...`) |
+| `scripts/verify.sh` | ตรวจว่าทุกบริการพร้อมและข้อมูลครบ |
+| `scripts/data_quality.sh` | ตรวจคุณภาพข้อมูลใน PostgreSQL |
+| `queries/` | ชุด query พร้อมรันของทั้ง 3 ฐานข้อมูล |
+| `submissions/` | ที่ส่งงานโปรเจกต์จบของผู้เรียน |
+| [`INSTRUCTOR.md`](INSTRUCTOR.md) | คู่มือผู้สอน (แผนเวลา + แก้ปัญหาที่เจอบ่อย) |
 
 ---
 
