@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="430" fill="#0f172a"/>
+  <text x="450" y="40" fill="#38bdf8" font-size="24" font-weight="bold" text-anchor="middle">Big Data Workshop — Architecture</text>
+  <text x="450" y="66" fill="#94a3b8" font-size="14" text-anchor="middle">E-commerce data platform · runs on Docker · assisted by Claude Code</text>
+
+  <!-- PostgreSQL -->
+  <rect x="40" y="110" width="200" height="90" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="140" y="145" fill="#fff" font-size="17" font-weight="bold" text-anchor="middle">🐘 PostgreSQL</text>
+  <text x="140" y="170" fill="#94a3b8" font-size="12" text-anchor="middle">customers · products</text>
+  <text x="140" y="187" fill="#94a3b8" font-size="12" text-anchor="middle">orders · order_items</text>
+
+  <!-- MongoDB -->
+  <rect x="40" y="250" width="200" height="90" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="140" y="285" fill="#fff" font-size="17" font-weight="bold" text-anchor="middle">🍃 MongoDB</text>
+  <text x="140" y="310" fill="#94a3b8" font-size="12" text-anchor="middle">reviews</text>
+  <text x="140" y="327" fill="#94a3b8" font-size="12" text-anchor="middle">product_catalog</text>
+
+  <!-- Airbyte -->
+  <rect x="360" y="160" width="180" height="90" rx="14" fill="#1e293b" stroke="#a78bfa"/>
+  <text x="450" y="200" fill="#fff" font-size="17" font-weight="bold" text-anchor="middle">🔄 Airbyte</text>
+  <text x="450" y="224" fill="#94a3b8" font-size="12" text-anchor="middle">ELT — move data</text>
+
+  <!-- ElasticSearch -->
+  <rect x="660" y="160" width="200" height="90" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="760" y="195" fill="#fff" font-size="17" font-weight="bold" text-anchor="middle">🔎 ElasticSearch</text>
+  <text x="760" y="220" fill="#94a3b8" font-size="12" text-anchor="middle">full-text product search</text>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#38bdf8"/>
+    </marker>
+  </defs>
+  <line x1="240" y1="155" x2="360" y2="190" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="540" y1="205" x2="660" y2="205" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="300" y="150" fill="#64748b" font-size="11">sync</text>
+
+  <!-- docker container box -->
+  <rect x="20" y="90" width="860" height="270" rx="18" fill="none" stroke="#334155" stroke-dasharray="6 6"/>
+  <text x="35" y="110" fill="#64748b" font-size="13">🐳 Docker</text>
+
+  <text x="450" y="395" fill="#94a3b8" font-size="13" text-anchor="middle">PostgreSQL = source of truth   •   Airbyte = conveyor belt   •   ElasticSearch = search layer   •   MongoDB = flexible store</text>
+</svg>
