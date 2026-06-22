@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Big Data Workshop — สไลด์ประกอบการสอน</title>
+<title>Big Data Workshop — Slides / สไลด์ / 幻灯片</title>
 <style>
   :root{
     --bg:#0f172a; --bg2:#1e293b; --card:#1e293b;
@@ -13,7 +13,7 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{
-    font-family:-apple-system,"Segoe UI","Sarabun",system-ui,sans-serif;
+    font-family:-apple-system,"Segoe UI","Sarabun","Noto Sans SC",system-ui,sans-serif;
     background:linear-gradient(135deg,#0f172a,#1e1b4b);
     color:var(--text);overflow:hidden;
   }
@@ -48,7 +48,7 @@
   .card span{display:block;color:var(--muted);font-size:.95rem;margin-top:6px}
   pre{background:#0b1120;border:1px solid var(--border);border-radius:12px;
       padding:18px 20px;overflow:auto;margin:16px 0}
-  code{font-family:"SFMono-Regular",Consolas,monospace;font-size:1.05rem;color:var(--green)}
+  code{font-family:"SFMono-Regular",Consolas,monospace;font-size:1.05rem;color:var(--green);white-space:pre}
   .flow{font-size:1.15rem;text-align:center;line-height:2.2;color:var(--text)}
   .flow b{color:var(--accent)}
   table{width:100%;border-collapse:collapse;margin-top:18px;font-size:1.05rem}
@@ -57,7 +57,6 @@
   td:first-child{font-weight:bold;color:#fff}
   .center{text-align:center}
   .hint{font-size:1.05rem;color:var(--muted);margin-top:24px;font-style:italic}
-  /* controls */
   .bar{position:fixed;bottom:0;left:0;right:0;display:flex;align-items:center;
        justify-content:space-between;padding:16px 28px;color:var(--muted);font-size:.95rem}
   .btn{background:var(--card);border:1px solid var(--border);color:var(--text);
@@ -68,196 +67,268 @@
   .robot{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.35);
           border-radius:14px;padding:18px 22px;margin-top:20px;font-size:1.1rem}
   .robot b{color:var(--accent2)}
+  /* language switcher */
+  .lang{position:fixed;top:16px;right:20px;display:flex;gap:6px;z-index:10}
+  .lang button{background:rgba(30,41,59,.8);border:1px solid var(--border);
+       color:var(--muted);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.95rem}
+  .lang button.on{border-color:var(--accent);color:var(--accent);background:rgba(56,189,248,.12)}
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
-<div class="deck">
 
-  <!-- 1 -->
-  <section class="slide active">
-    <div class="center">
-      <span class="tag">Workshop • สำหรับผู้เริ่มต้น</span>
-      <h1>สร้าง Mini Data Platform<br>ด้วยตัวเอง</h1>
-      <p class="lead">เรียน Big Data ผ่านการลงมือทำจริง ธีมร้านค้าออนไลน์ 🛒</p>
-      <div class="grid" style="margin-top:30px">
-        <div class="card"><span class="ico">🐘</span><b>PostgreSQL</b><span>ข้อมูลหลัก</span></div>
-        <div class="card"><span class="ico">🍃</span><b>MongoDB</b><span>รีวิว/แคตตาล็อก</span></div>
-        <div class="card"><span class="ico">🔎</span><b>ElasticSearch</b><span>ค้นหา</span></div>
-      </div>
-      <p class="hint">+ 🔄 Airbyte &nbsp;•&nbsp; 🐳 Docker &nbsp;•&nbsp; 🤖 Claude Code</p>
-    </div>
-  </section>
-
-  <!-- 2 -->
-  <section class="slide">
-    <h2><span class="num">ภาพรวม</span>Stack นี้เล่าเรื่องอะไร?</h2>
-    <p>ร้านค้าจริงมีข้อมูลกระจายหลายที่ เราจะประกอบมันเข้าด้วยกัน</p>
-    <div class="flow" style="margin-top:24px">
-      <b>PostgreSQL</b> (ลูกค้า·สินค้า·ออเดอร์)<br>↓<br>
-      <b>Airbyte</b> ดึงข้อมูลอัตโนมัติ<br>↓<br>
-      <b>ElasticSearch</b> ทำหน้าค้นหาให้เร็ว<br><br>
-      <b>MongoDB</b> เก็บรีวิว + สเปคที่ยืดหยุ่น
-    </div>
-    <p class="hint">ทั้งหมดรันบน 🐳 Docker และมี 🤖 Claude Code เป็นผู้ช่วยตลอดทาง</p>
-  </section>
-
-  <!-- 3 -->
-  <section class="slide">
-    <h2><span class="num">เครื่องมือ</span>ใครทำหน้าที่อะไร</h2>
-    <table>
-      <tr><th>เครื่องมือ</th><th>คืออะไร</th><th>ใช้ทำอะไร</th></tr>
-      <tr><td>🐘 PostgreSQL</td><td>Relational DB</td><td>ลูกค้า สินค้า ออเดอร์</td></tr>
-      <tr><td>🍃 MongoDB</td><td>Document DB</td><td>รีวิว แคตตาล็อก</td></tr>
-      <tr><td>🔎 ElasticSearch</td><td>Search engine</td><td>ค้นหาสินค้า full-text</td></tr>
-      <tr><td>🔄 Airbyte</td><td>ELT tool</td><td>ย้ายข้อมูลอัตโนมัติ</td></tr>
-      <tr><td>🐳 Docker</td><td>Container runtime</td><td>ยก stack ด้วยคำสั่งเดียว</td></tr>
-      <tr><td>🤖 Claude Code</td><td>AI assistant</td><td>เขียน/แก้/อธิบายโค้ด</td></tr>
-    </table>
-  </section>
-
-  <!-- 4 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 1</span>🐳 Docker — ยก stack ด้วยคำสั่งเดียว</h2>
-    <p>Container = "กล่องสำเร็จรูป" ที่มีโปรแกรม + ทุกอย่างพร้อมรัน ไม่ต้องลงทีละตัว</p>
-    <pre><code>cp .env.example .env
-docker compose up -d      # เปิดทุก service
-docker compose ps         # เช็คสถานะ</code></pre>
-    <p>เปิดหน้าเว็บได้เลย: Adminer :8080 • Mongo Express :8081 • Kibana :5601</p>
-    <div class="robot">🤖 <b>ถาม Claude:</b> "elasticsearch ขึ้น unhealthy ช่วยดู log แล้วบอกสาเหตุ"</div>
-  </section>
-
-  <!-- 5 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 2</span>🐘 PostgreSQL — ตารางและ JOIN</h2>
-    <p>ข้อมูลเก็บเป็นตารางที่เชื่อมกันด้วยความสัมพันธ์ (relation)</p>
-    <pre><code>-- ยอดขายรวมของลูกค้าแต่ละคน
-SELECT c.full_name, SUM(oi.quantity * oi.unit_price) AS total
-FROM customers c
-JOIN orders o       ON c.customer_id = o.customer_id
-JOIN order_items oi ON o.order_id = oi.order_id
-GROUP BY c.full_name
-ORDER BY total DESC;</code></pre>
-    <div class="robot">🤖 <b>ถาม Claude:</b> "หาลูกค้าที่ใช้เงินมากสุด 3 คน ไม่นับออเดอร์ที่ cancelled"</div>
-  </section>
-
-  <!-- 6 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 3</span>🍃 MongoDB — ข้อมูลแบบเอกสาร</h2>
-    <p>แต่ละ document มี field ไม่เท่ากันได้ และเก็บข้อมูลซ้อนกัน (nested) ได้</p>
-    <pre><code>// คะแนนเฉลี่ยและจำนวนรีวิวต่อสินค้า
-db.reviews.aggregate([
-  { $group: {
-      _id: "$product_name",
-      avg_rating:  { $avg: "$rating" },
-      review_count:{ $sum: 1 }
-  }},
-  { $sort: { avg_rating: -1 } }
-])</code></pre>
-    <div class="robot">🤖 <b>ถาม Claude:</b> "นับว่าแต่ละ tag ในรีวิวถูกใช้กี่ครั้ง"</div>
-  </section>
-
-  <!-- 7 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 4</span>🔎 ElasticSearch — ค้นหาแบบฉลาด</h2>
-    <p>ช่องค้นหาที่ SQL ทำได้ไม่ดี — เร็ว + จัดอันดับความเกี่ยวข้องให้</p>
-    <pre><code>GET products/_search
-{
-  "query": {
-    "bool": {
-      "must":   { "match": { "name": "keyboard" } },
-      "filter": [{ "range": { "price": { "lte": 3000 } } }]
-    }
-  }
-}</code></pre>
-    <div class="robot">🤖 <b>ถาม Claude:</b> "หาหนังสือที่มีคำว่า data ในชื่อหรือคำอธิบาย"</div>
-  </section>
-
-  <!-- 8 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 5</span>⚖️ ใช้ฐานข้อมูลไหนเมื่อไหร่?</h2>
-    <table>
-      <tr><th></th><th>🐘 Postgres</th><th>🍃 Mongo</th><th>🔎 Elastic</th></tr>
-      <tr><td>เก่งเรื่อง</td><td>ความถูกต้อง JOIN</td><td>โครงสร้างยืดหยุ่น</td><td>ค้นหาเร็ว</td></tr>
-      <tr><td>ในร้านเรา</td><td>ออเดอร์ เงิน สต็อก</td><td>รีวิว สเปค</td><td>ช่องค้นหา</td></tr>
-    </table>
-    <p class="hint">ไม่มี "ดีที่สุด" มีแต่ "เหมาะกับงานไหน" — ระบบจริงมักใช้หลายตัวร่วมกัน</p>
-  </section>
-
-  <!-- 9 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 6</span>🔄 Airbyte — ท่อส่งข้อมูลอัตโนมัติ</h2>
-    <p>ตั้งครั้งเดียว มันดึงข้อมูลจาก <b>Source → Destination</b> ให้ตามรอบ</p>
-    <pre><code>curl -LsfS https://get.airbyte.com | bash -
-abctl local install        # เปิด Airbyte
-abctl local credentials    # เอารหัสเข้า http://localhost:8000</code></pre>
-    <p>Source = PostgreSQL ของเรา → Destination เริ่มที่ Local JSON (ง่ายสุด)</p>
-    <div class="robot">🤖 <b>ถาม Claude:</b> "ต่อ Source Postgres ไม่ติด ขึ้น connection refused เช็คอะไรบ้าง"</div>
-  </section>
-
-  <!-- 10 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 7</span>🔗 ต่อทุกอย่างเป็น Pipeline เดียว</h2>
-    <div class="flow">
-      ลูกค้าสั่งซื้อ → บันทึกที่ <b>PostgreSQL</b><br>↓<br>
-      <b>Airbyte</b> ดึง products ไป<br>↓<br>
-      <b>ElasticSearch</b> ทำ index ค้นหา<br>↓<br>
-      ผู้ใช้ค้นหาสินค้าบนหน้าเว็บได้ทันที ✨
-    </div>
-    <p class="hint">Postgres = แหล่งความจริง • Airbyte = สายพาน • Elastic = ชั้นค้นหา</p>
-  </section>
-
-  <!-- 11 -->
-  <section class="slide">
-    <h2><span class="num">โมดูล 8</span>🎓 โปรเจกต์จบ</h2>
-    <p>รวมทุกอย่างที่เรียนมา สร้างระบบข้อมูลร้านของคุณเอง (เลือกทำ 3 ข้อ)</p>
-    <ul>
-      <li>รายงานยอดขายแยกตามหมวด (SQL)</li>
-      <li>หา top reviewer (MongoDB aggregation)</li>
-      <li>หน้าค้นหาสินค้า + กรองราคา (ElasticSearch)</li>
-      <li>sync ข้อมูลด้วย Airbyte ไป destination</li>
-      <li>ตรวจ data quality / เพิ่ม dataset ของตัวเอง</li>
-    </ul>
-    <div class="robot">🤖 ใช้ Claude Code เป็นคู่หู: ออกแบบ → เขียนโค้ด → debug → อธิบาย</div>
-  </section>
-
-  <!-- 12 -->
-  <section class="slide center">
-    <h1>เริ่มกันเลย! 🚀</h1>
-    <p class="lead">เปิด terminal ในโฟลเดอร์ workshop แล้วพิมพ์</p>
-    <pre style="text-align:left;display:inline-block"><code>cp .env.example .env
-docker compose up -d
-claude</code></pre>
-    <p class="quote" style="margin-top:30px">"แทนที่จะจำคำสั่ง — ให้สั่งงานเป็นภาษาคน แล้วให้ Claude ช่วยทำ"</p>
-    <p class="hint">รายละเอียดแต่ละโมดูลอยู่ในโฟลเดอร์ <code style="color:var(--green)">modules/</code></p>
-  </section>
-
+<div class="lang" id="lang">
+  <button data-lang="en">EN</button>
+  <button data-lang="th">TH</button>
+  <button data-lang="zh">中文</button>
 </div>
 
+<div class="deck"><div id="stage"></div></div>
+
 <div class="bar">
-  <button class="btn" onclick="prev()">← ก่อนหน้า</button>
+  <button class="btn" id="prevBtn"></button>
   <span id="counter">1 / 12</span>
-  <button class="btn" onclick="next()">ถัดไป →</button>
+  <button class="btn" id="nextBtn"></button>
 </div>
 
 <script>
-  const slides=[...document.querySelectorAll('.slide')];
-  let i=0;
-  function show(n){
-    i=Math.max(0,Math.min(slides.length-1,n));
-    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
-    document.getElementById('counter').textContent=(i+1)+' / '+slides.length;
-    document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+// ===== helper: localized value =====
+function L(en, th, zh){ return {en, th, zh}; }
+
+// ===== UI strings =====
+const UI = {
+  prev: L("← Prev", "← ก่อนหน้า", "← 上一页"),
+  next: L("Next →", "ถัดไป →", "下一页 →"),
+  ask:  L("Ask Claude:", "ถาม Claude:", "问 Claude："),
+};
+
+// ===== slide data (12 slides) =====
+const SLIDES = [
+  // 1 — title
+  { layout:"title",
+    tag:   L("Workshop • For Beginners","Workshop • สำหรับผู้เริ่มต้น","工作坊 • 初学者"),
+    title: L("Build Your Own<br>Mini Data Platform","สร้าง Mini Data Platform<br>ด้วยตัวเอง","亲手打造<br>迷你数据平台"),
+    lead:  L("Learn Big Data hands-on with an online-store theme 🛒","เรียน Big Data ผ่านการลงมือทำจริง ธีมร้านค้าออนไลน์ 🛒","通过网店主题动手学习大数据 🛒"),
+    cards:[
+      {ico:"🐘",name:"PostgreSQL", sub:L("Core data","ข้อมูลหลัก","核心数据")},
+      {ico:"🍃",name:"MongoDB",    sub:L("Reviews / catalog","รีวิว/แคตตาล็อก","评论/目录")},
+      {ico:"🔎",name:"ElasticSearch",sub:L("Search","ค้นหา","搜索")},
+    ],
+    hint: L("+ 🔄 Airbyte • 🐳 Docker • 🤖 Claude Code","+ 🔄 Airbyte • 🐳 Docker • 🤖 Claude Code","+ 🔄 Airbyte • 🐳 Docker • 🤖 Claude Code") },
+
+  // 2 — flow
+  { layout:"flow",
+    num:  L("Overview","ภาพรวม","概览"),
+    h2:   L("What story does this stack tell?","Stack นี้เล่าเรื่องอะไร?","这套技术栈在讲什么故事?"),
+    p:    L("A real store keeps data in many places — we'll assemble it together","ร้านค้าจริงมีข้อมูลกระจายหลายที่ เราจะประกอบมันเข้าด้วยกัน","真实商店的数据分散各处——我们把它整合到一起"),
+    flow: L(
+      "<b>PostgreSQL</b> (customers · products · orders)<br>↓<br><b>Airbyte</b> pulls data automatically<br>↓<br><b>ElasticSearch</b> powers fast search<br><br><b>MongoDB</b> stores flexible reviews + specs",
+      "<b>PostgreSQL</b> (ลูกค้า·สินค้า·ออเดอร์)<br>↓<br><b>Airbyte</b> ดึงข้อมูลอัตโนมัติ<br>↓<br><b>ElasticSearch</b> ทำหน้าค้นหาให้เร็ว<br><br><b>MongoDB</b> เก็บรีวิว + สเปคที่ยืดหยุ่น",
+      "<b>PostgreSQL</b>（客户·商品·订单）<br>↓<br><b>Airbyte</b> 自动抽取数据<br>↓<br><b>ElasticSearch</b> 提供快速搜索<br><br><b>MongoDB</b> 存储灵活的评论+规格"),
+    hint: L("Everything runs on 🐳 Docker, with 🤖 Claude Code as your assistant","ทั้งหมดรันบน 🐳 Docker และมี 🤖 Claude Code เป็นผู้ช่วยตลอดทาง","全部运行在 🐳 Docker 上，🤖 Claude Code 全程协助") },
+
+  // 3 — tool table
+  { layout:"toolTable",
+    num: L("Tools","เครื่องมือ","工具"),
+    h2:  L("Who does what","ใครทำหน้าที่อะไร","各自负责什么"),
+    head:[ L("Tool","เครื่องมือ","工具"), L("What it is","คืออะไร","是什么"), L("Used for","ใช้ทำอะไร","用途") ],
+    rows:[
+      ["🐘 PostgreSQL", L("Relational DB","Relational DB","关系型数据库"), L("Customers, products, orders","ลูกค้า สินค้า ออเดอร์","客户、商品、订单")],
+      ["🍃 MongoDB", L("Document DB","Document DB","文档数据库"), L("Reviews, catalog","รีวิว แคตตาล็อก","评论、目录")],
+      ["🔎 ElasticSearch", L("Search engine","Search engine","搜索引擎"), L("Full-text product search","ค้นหาสินค้า full-text","商品全文搜索")],
+      ["🔄 Airbyte", L("ELT tool","ELT tool","ELT 工具"), L("Move data automatically","ย้ายข้อมูลอัตโนมัติ","自动迁移数据")],
+      ["🐳 Docker", L("Container runtime","Container runtime","容器运行时"), L("Boot the stack in one command","ยก stack ด้วยคำสั่งเดียว","一条命令启动整套环境")],
+      ["🤖 Claude Code", L("AI assistant","AI assistant","AI 助手"), L("Write / fix / explain code","เขียน/แก้/อธิบายโค้ด","编写/修复/解释代码")],
+    ] },
+
+  // 4 — module 1 Docker
+  { layout:"module",
+    num: L("Module 1","โมดูล 1","模块 1"),
+    h2:  L("🐳 Docker — boot the stack in one command","🐳 Docker — ยก stack ด้วยคำสั่งเดียว","🐳 Docker — 一条命令启动整套环境"),
+    p:   L("A container is a ready-made box with the program + everything it needs — no installing one by one","Container = \"กล่องสำเร็จรูป\" ที่มีโปรแกรม + ทุกอย่างพร้อมรัน ไม่ต้องลงทีละตัว","容器就是一个开箱即用的“盒子”，程序和依赖都打包好了——无需逐个安装"),
+    code: L("cp .env.example .env\ndocker compose up -d   # start all services\ndocker compose ps      # check status",
+            "cp .env.example .env\ndocker compose up -d   # เปิดทุก service\ndocker compose ps      # เช็คสถานะ",
+            "cp .env.example .env\ndocker compose up -d   # 启动所有服务\ndocker compose ps      # 查看状态"),
+    p2:  L("Open the web UIs: Adminer :8080 • Mongo Express :8081 • Kibana :5601","เปิดหน้าเว็บได้เลย: Adminer :8080 • Mongo Express :8081 • Kibana :5601","直接打开网页：Adminer :8080 • Mongo Express :8081 • Kibana :5601"),
+    robot: L("elasticsearch shows unhealthy — read the logs and tell me why","elasticsearch ขึ้น unhealthy ช่วยดู log แล้วบอกสาเหตุ","elasticsearch 显示 unhealthy，帮我看日志并说明原因") },
+
+  // 5 — module 2 Postgres
+  { layout:"module",
+    num: L("Module 2","โมดูล 2","模块 2"),
+    h2:  L("🐘 PostgreSQL — tables & JOIN","🐘 PostgreSQL — ตารางและ JOIN","🐘 PostgreSQL — 表与 JOIN"),
+    p:   L("Data lives in tables linked by relations","ข้อมูลเก็บเป็นตารางที่เชื่อมกันด้วยความสัมพันธ์ (relation)","数据存储为通过关系连接的表"),
+    code: L("-- total spending per customer\nSELECT c.full_name, SUM(oi.quantity * oi.unit_price) AS total\nFROM customers c\nJOIN orders o       ON c.customer_id = o.customer_id\nJOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY c.full_name\nORDER BY total DESC;",
+            "-- ยอดขายรวมของลูกค้าแต่ละคน\nSELECT c.full_name, SUM(oi.quantity * oi.unit_price) AS total\nFROM customers c\nJOIN orders o       ON c.customer_id = o.customer_id\nJOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY c.full_name\nORDER BY total DESC;",
+            "-- 每位客户的消费总额\nSELECT c.full_name, SUM(oi.quantity * oi.unit_price) AS total\nFROM customers c\nJOIN orders o       ON c.customer_id = o.customer_id\nJOIN order_items oi ON o.order_id = oi.order_id\nGROUP BY c.full_name\nORDER BY total DESC;"),
+    robot: L("Find the top 3 spenders, excluding cancelled orders","หาลูกค้าที่ใช้เงินมากสุด 3 คน ไม่นับออเดอร์ที่ cancelled","找出消费最高的前 3 名客户，排除已取消的订单") },
+
+  // 6 — module 3 Mongo
+  { layout:"module",
+    num: L("Module 3","โมดูล 3","模块 3"),
+    h2:  L("🍃 MongoDB — document data","🍃 MongoDB — ข้อมูลแบบเอกสาร","🍃 MongoDB — 文档型数据"),
+    p:   L("Each document can have different fields and nested data","แต่ละ document มี field ไม่เท่ากันได้ และเก็บข้อมูลซ้อนกัน (nested) ได้","每个文档可以有不同字段，并支持嵌套数据"),
+    code: L("// avg rating & review count per product\ndb.reviews.aggregate([\n  { $group: {\n      _id: \"$product_name\",\n      avg_rating:  { $avg: \"$rating\" },\n      review_count:{ $sum: 1 }\n  }},\n  { $sort: { avg_rating: -1 } }\n])",
+            "// คะแนนเฉลี่ยและจำนวนรีวิวต่อสินค้า\ndb.reviews.aggregate([\n  { $group: {\n      _id: \"$product_name\",\n      avg_rating:  { $avg: \"$rating\" },\n      review_count:{ $sum: 1 }\n  }},\n  { $sort: { avg_rating: -1 } }\n])",
+            "// 每个商品的平均评分与评论数\ndb.reviews.aggregate([\n  { $group: {\n      _id: \"$product_name\",\n      avg_rating:  { $avg: \"$rating\" },\n      review_count:{ $sum: 1 }\n  }},\n  { $sort: { avg_rating: -1 } }\n])"),
+    robot: L("Count how many times each review tag is used","นับว่าแต่ละ tag ในรีวิวถูกใช้กี่ครั้ง","统计每个评论标签被使用了多少次") },
+
+  // 7 — module 4 Elastic
+  { layout:"module",
+    num: L("Module 4","โมดูล 4","模块 4"),
+    h2:  L("🔎 ElasticSearch — smart search","🔎 ElasticSearch — ค้นหาแบบฉลาด","🔎 ElasticSearch — 智能搜索"),
+    p:   L("Search that SQL handles poorly — fast + relevance ranking","ช่องค้นหาที่ SQL ทำได้ไม่ดี — เร็ว + จัดอันดับความเกี่ยวข้องให้","SQL 难以胜任的搜索——快速且按相关性排序"),
+    code: L("GET products/_search\n{\n  \"query\": {\n    \"bool\": {\n      \"must\":   { \"match\": { \"name\": \"keyboard\" } },\n      \"filter\": [{ \"range\": { \"price\": { \"lte\": 3000 } } }]\n    }\n  }\n}",
+            "GET products/_search\n{\n  \"query\": {\n    \"bool\": {\n      \"must\":   { \"match\": { \"name\": \"keyboard\" } },\n      \"filter\": [{ \"range\": { \"price\": { \"lte\": 3000 } } }]\n    }\n  }\n}",
+            "GET products/_search\n{\n  \"query\": {\n    \"bool\": {\n      \"must\":   { \"match\": { \"name\": \"keyboard\" } },\n      \"filter\": [{ \"range\": { \"price\": { \"lte\": 3000 } } }]\n    }\n  }\n}"),
+    robot: L("Find books with 'data' in the name or description","หาหนังสือที่มีคำว่า data ในชื่อหรือคำอธิบาย","查找名称或描述中包含 data 的图书") },
+
+  // 8 — compare table
+  { layout:"compareTable",
+    num: L("Module 5","โมดูล 5","模块 5"),
+    h2:  L("⚖️ Which database, when?","⚖️ ใช้ฐานข้อมูลไหนเมื่อไหร่?","⚖️ 何时该用哪个数据库?"),
+    head:[ L("","",""), "🐘 Postgres", "🍃 Mongo", "🔎 Elastic" ],
+    rows:[
+      [ L("Best at","เก่งเรื่อง","擅长"), L("Accuracy, JOINs","ความถูกต้อง JOIN","准确性、JOIN"), L("Flexible structure","โครงสร้างยืดหยุ่น","灵活结构"), L("Fast search","ค้นหาเร็ว","快速搜索") ],
+      [ L("In our store","ในร้านเรา","在我们商店"), L("Orders, money, stock","ออเดอร์ เงิน สต็อก","订单、金额、库存"), L("Reviews, specs","รีวิว สเปค","评论、规格"), L("The search box","ช่องค้นหา","搜索框") ],
+    ],
+    hint: L("No single \"best\" — only \"best fit\". Real systems mix several","ไม่มี \"ดีที่สุด\" มีแต่ \"เหมาะกับงานไหน\" — ระบบจริงมักใช้หลายตัวร่วมกัน","没有绝对“最好”，只有“最合适”——真实系统常多种并用") },
+
+  // 9 — module 6 Airbyte
+  { layout:"module",
+    num: L("Module 6","โมดูล 6","模块 6"),
+    h2:  L("🔄 Airbyte — automatic data pipe","🔄 Airbyte — ท่อส่งข้อมูลอัตโนมัติ","🔄 Airbyte — 自动数据管道"),
+    p:   L("Set it once; it pulls data from Source → Destination on schedule","ตั้งครั้งเดียว มันดึงข้อมูลจาก Source → Destination ให้ตามรอบ","设置一次，它就按计划把数据从 源 → 目的地 抽取"),
+    code: L("curl -LsfS https://get.airbyte.com | bash -\nabctl local install       # start Airbyte\nabctl local credentials   # login at http://localhost:8000",
+            "curl -LsfS https://get.airbyte.com | bash -\nabctl local install       # เปิด Airbyte\nabctl local credentials   # เอารหัสเข้า http://localhost:8000",
+            "curl -LsfS https://get.airbyte.com | bash -\nabctl local install       # 启动 Airbyte\nabctl local credentials   # 在 http://localhost:8000 登录"),
+    p2:  L("Source = our PostgreSQL → Destination start with Local JSON (easiest)","Source = PostgreSQL ของเรา → Destination เริ่มที่ Local JSON (ง่ายสุด)","数据源 = 我们的 PostgreSQL → 目的地先用 Local JSON（最简单）"),
+    robot: L("Can't connect Source Postgres — connection refused, what to check?","ต่อ Source Postgres ไม่ติด ขึ้น connection refused เช็คอะไรบ้าง","连接 Source Postgres 失败，提示 connection refused，要检查什么?") },
+
+  // 10 — pipeline flow
+  { layout:"flow",
+    num: L("Module 7","โมดูล 7","模块 7"),
+    h2:  L("🔗 Connect it all into one pipeline","🔗 ต่อทุกอย่างเป็น Pipeline เดียว","🔗 把一切连成一条管道"),
+    p:   "",
+    flow: L(
+      "Customer buys → saved in <b>PostgreSQL</b><br>↓<br><b>Airbyte</b> pulls products<br>↓<br><b>ElasticSearch</b> builds the search index<br>↓<br>Users search products instantly ✨",
+      "ลูกค้าสั่งซื้อ → บันทึกที่ <b>PostgreSQL</b><br>↓<br><b>Airbyte</b> ดึง products ไป<br>↓<br><b>ElasticSearch</b> ทำ index ค้นหา<br>↓<br>ผู้ใช้ค้นหาสินค้าบนหน้าเว็บได้ทันที ✨",
+      "客户下单 → 保存到 <b>PostgreSQL</b><br>↓<br><b>Airbyte</b> 抽取商品数据<br>↓<br><b>ElasticSearch</b> 建立搜索索引<br>↓<br>用户即可即时搜索商品 ✨"),
+    hint: L("Postgres = source of truth • Airbyte = conveyor • Elastic = search layer","Postgres = แหล่งความจริง • Airbyte = สายพาน • Elastic = ชั้นค้นหา","Postgres = 唯一可信源 • Airbyte = 传送带 • Elastic = 搜索层") },
+
+  // 11 — project
+  { layout:"project",
+    num: L("Module 8","โมดูล 8","模块 8"),
+    h2:  L("🎓 Final project","🎓 โปรเจกต์จบ","🎓 结业项目"),
+    p:   L("Combine everything to build your own store data system (pick any 3)","รวมทุกอย่างที่เรียนมา สร้างระบบข้อมูลร้านของคุณเอง (เลือกทำ 3 ข้อ)","综合所学，打造你自己的商店数据系统（任选 3 项）"),
+    items:[
+      L("Sales report by category (SQL)","รายงานยอดขายแยกตามหมวด (SQL)","按品类的销售报表（SQL）"),
+      L("Find the top reviewer (MongoDB aggregation)","หา top reviewer (MongoDB aggregation)","找出评论最多的用户（MongoDB 聚合）"),
+      L("Product search + price filter (ElasticSearch)","หน้าค้นหาสินค้า + กรองราคา (ElasticSearch)","商品搜索 + 价格过滤（ElasticSearch）"),
+      L("Sync data to a destination with Airbyte","sync ข้อมูลด้วย Airbyte ไป destination","用 Airbyte 把数据同步到目的地"),
+      L("Data-quality checks / add your own dataset","ตรวจ data quality / เพิ่ม dataset ของตัวเอง","数据质量检查 / 添加你自己的数据集"),
+    ],
+    robot: L("Use Claude Code as your pair: design → code → debug → explain","ใช้ Claude Code เป็นคู่หู: ออกแบบ → เขียนโค้ด → debug → อธิบาย","把 Claude Code 当搭档：设计 → 编码 → 调试 → 讲解") },
+
+  // 12 — closing
+  { layout:"closing",
+    title: L("Let's get started! 🚀","เริ่มกันเลย! 🚀","开始吧! 🚀"),
+    lead:  L("Open a terminal in the workshop folder and type","เปิด terminal ในโฟลเดอร์ workshop แล้วพิมพ์","在工作坊目录打开终端并输入"),
+    code:  "cp .env.example .env\ndocker compose up -d\nclaude",
+    quote: L("\"Don't memorize commands — describe what you want, and let Claude build it\"","\"แทนที่จะจำคำสั่ง — ให้สั่งงานเป็นภาษาคน แล้วให้ Claude ช่วยทำ\"","\"不必死记命令——用自然语言描述需求，让 Claude 来完成\""),
+    hint:  L("Per-module details live in the <b>modules/</b> folder","รายละเอียดแต่ละโมดูลอยู่ในโฟลเดอร์ <b>modules/</b>","每个模块的细节都在 <b>modules/</b> 文件夹中") },
+];
+
+// ===== state =====
+let lang = localStorage.getItem('bdw_lang') || 'en';
+let i = 0;
+const stage = document.getElementById('stage');
+
+function g(v){ return (v && typeof v==='object' && ('en' in v)) ? (v[lang] ?? v.en) : v; }
+
+// ===== renderers =====
+function render(s){
+  switch(s.layout){
+    case "title":
+      return `<section class="slide center">
+        <span class="tag">${g(s.tag)}</span>
+        <h1>${g(s.title)}</h1>
+        <p class="lead">${g(s.lead)}</p>
+        <div class="grid" style="margin-top:30px">
+          ${s.cards.map(c=>`<div class="card"><span class="ico">${c.ico}</span><b>${c.name}</b><span>${g(c.sub)}</span></div>`).join('')}
+        </div>
+        <p class="hint">${g(s.hint)}</p></section>`;
+    case "flow":
+      return `<section class="slide">
+        <h2><span class="num">${g(s.num)}</span>${g(s.h2)}</h2>
+        ${g(s.p)?`<p>${g(s.p)}</p>`:''}
+        <div class="flow" style="margin-top:20px">${g(s.flow)}</div>
+        <p class="hint">${g(s.hint)}</p></section>`;
+    case "toolTable":
+      return `<section class="slide">
+        <h2><span class="num">${g(s.num)}</span>${g(s.h2)}</h2>
+        <table><tr>${s.head.map(h=>`<th>${g(h)}</th>`).join('')}</tr>
+        ${s.rows.map(r=>`<tr><td>${r[0]}</td><td>${g(r[1])}</td><td>${g(r[2])}</td></tr>`).join('')}
+        </table></section>`;
+    case "module":
+      return `<section class="slide">
+        <h2><span class="num">${g(s.num)}</span>${g(s.h2)}</h2>
+        <p>${g(s.p)}</p>
+        <pre><code>${esc(g(s.code))}</code></pre>
+        ${s.p2?`<p>${g(s.p2)}</p>`:''}
+        <div class="robot">🤖 <b>${g(UI.ask)}</b> "${g(s.robot)}"</div></section>`;
+    case "compareTable":
+      return `<section class="slide">
+        <h2><span class="num">${g(s.num)}</span>${g(s.h2)}</h2>
+        <table><tr>${s.head.map(h=>`<th>${g(h)}</th>`).join('')}</tr>
+        ${s.rows.map(r=>`<tr>${r.map((c,k)=>k===0?`<td>${g(c)}</td>`:`<td>${g(c)}</td>`).join('')}</tr>`).join('')}
+        </table>
+        <p class="hint">${g(s.hint)}</p></section>`;
+    case "project":
+      return `<section class="slide">
+        <h2><span class="num">${g(s.num)}</span>${g(s.h2)}</h2>
+        <p>${g(s.p)}</p>
+        <ul>${s.items.map(it=>`<li>${g(it)}</li>`).join('')}</ul>
+        <div class="robot">🤖 ${g(s.robot)}</div></section>`;
+    case "closing":
+      return `<section class="slide center">
+        <h1>${g(s.title)}</h1>
+        <p class="lead">${g(s.lead)}</p>
+        <pre style="text-align:left;display:inline-block"><code>${esc(s.code)}</code></pre>
+        <p class="quote" style="margin-top:30px">${g(s.quote)}</p>
+        <p class="hint">${g(s.hint)}</p></section>`;
   }
-  function next(){show(i+1)}
-  function prev(){show(i-1)}
-  document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')next();
-    if(e.key==='ArrowLeft'||e.key==='PageUp')prev();
-    if(e.key==='Home')show(0);
-    if(e.key==='End')show(slides.length-1);
-  });
-  show(0);
+  return '';
+}
+function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ===== drive =====
+function show(n){
+  i = Math.max(0, Math.min(SLIDES.length-1, n));
+  stage.innerHTML = render(SLIDES[i]);
+  stage.firstElementChild.classList.add('active');
+  document.getElementById('counter').textContent = (i+1)+' / '+SLIDES.length;
+  document.getElementById('progress').style.width = ((i+1)/SLIDES.length*100)+'%';
+}
+function setLang(l){
+  lang = l; localStorage.setItem('bdw_lang', l);
+  document.documentElement.lang = (l==='zh'?'zh-CN':l);
+  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
+  document.getElementById('prevBtn').textContent = g(UI.prev);
+  document.getElementById('nextBtn').textContent = g(UI.next);
+  show(i);
+}
+
+document.getElementById('prevBtn').onclick = ()=>show(i-1);
+document.getElementById('nextBtn').onclick = ()=>show(i+1);
+document.querySelectorAll('#lang button').forEach(b=> b.onclick = ()=>setLang(b.dataset.lang));
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') show(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') show(i-1);
+  if(e.key==='Home') show(0);
+  if(e.key==='End') show(SLIDES.length-1);
+});
+
+setLang(lang);
 </script>
 </body>
 </html>
