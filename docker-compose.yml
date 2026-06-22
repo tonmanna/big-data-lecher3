@@ -1,0 +1,118 @@
+# ============================================================
+#  Big Data Workshop - Full Stack
+#  PostgreSQL + MongoDB + ElasticSearch (+ UI tools)
+#
+#  วิธีใช้:
+#    docker compose up -d        # เปิดทุก service
+#    docker compose ps           # ดูสถานะ
+#    docker compose down         # ปิด (ข้อมูลยังอยู่)
+#    docker compose down -v      # ปิด + ลบข้อมูลทั้งหมด (เริ่มใหม่)
+#
+#  หมายเหตุ: Airbyte ติดตั้งแยกด้วย abctl (ดู modules/06-airbyte)
+# ============================================================
+
+services:
+  # ---------- PostgreSQL : ฐานข้อมูลเชิงสัมพันธ์ (relational) ----------
+  postgres:
+    image: postgres:16
+    container_name: workshop-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-shopadmin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-shop1234}
+      POSTGRES_DB: ${POSTGRES_DB:-shop}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # สคริปต์ใน folder นี้จะรันอัตโนมัติตอนสร้าง container ครั้งแรก
+      - ./data/seed/postgres:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-shopadmin} -d ${POSTGRES_DB:-shop}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------- Adminer : หน้าเว็บจัดการ PostgreSQL ----------
+  adminer:
+    image: adminer:4
+    container_name: workshop-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    depends_on:
+      - postgres
+
+  # ---------- MongoDB : ฐานข้อมูลแบบเอกสาร (document / NoSQL) ----------
+  mongodb:
+    image: mongo:7
+    container_name: workshop-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-shopadmin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-shop1234}
+      MONGO_INITDB_DATABASE: shop
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      # ไฟล์ .js ใน folder นี้จะรันอัตโนมัติตอนสร้าง container ครั้งแรก
+      - ./data/seed/mongodb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------- Mongo Express : หน้าเว็บจัดการ MongoDB ----------
+  mongo-express:
+    image: mongo-express:1
+    container_name: workshop-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USER:-shopadmin}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD:-shop1234}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER:-shopadmin}:${MONGO_PASSWORD:-shop1234}@mongodb:27017/
+      ME_CONFIG_BASICAUTH: "false"
+    depends_on:
+      - mongodb
+
+  # ---------- ElasticSearch : เครื่องมือค้นหา / full-text search ----------
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: workshop-elasticsearch
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false        # ปิด security เพื่อให้ workshop ง่าย (อย่าใช้แบบนี้บน production!)
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"     # จำกัด RAM ให้รันบนเครื่องเล็กได้
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\"'"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  # ---------- Kibana : หน้าเว็บจัดการ / query ElasticSearch ----------
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    container_name: workshop-kibana
+    restart: unless-stopped
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+volumes:
+  postgres_data:
+  mongo_data:
+  es_data:

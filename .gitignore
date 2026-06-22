@@ -1,0 +1,22 @@
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Python (เผื่อมี script เสริม)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Airbyte local data
+airbyte/
