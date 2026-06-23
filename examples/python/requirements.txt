@@ -1,0 +1,4 @@
+# ไลบรารีสำหรับต่อแต่ละฐานข้อมูล
+psycopg2-binary>=2.9     # PostgreSQL
+pymongo>=4.6            # MongoDB
+requests>=2.31         # เรียก ElasticSearch ผ่าน REST

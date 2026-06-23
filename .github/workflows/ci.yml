@@ -1,0 +1,43 @@
+name: validate
+
+# ตรวจไฟล์สำคัญของ workshop ทุกครั้งที่ push หรือเปิด PR
+# (เป็นการตรวจ "ความถูกต้องเชิงไวยากรณ์" ไม่ได้รันฐานข้อมูลจริง)
+
+on:
+  push:
+    branches: [ main, "claude/**" ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate docker-compose.yml
+        run: docker compose config --quiet
+
+      - name: Check shell scripts syntax
+        run: |
+          for f in scripts/*.sh data/seed/elasticsearch/*.sh; do
+            echo "checking $f"
+            bash -n "$f"
+          done
+
+      - name: Check Makefile parses
+        run: make -n up >/dev/null
+
+      - name: Check slides.html JavaScript syntax
+        run: |
+          # ดึงเฉพาะส่วน <script> ออกมาเช็คด้วย node --check
+          python3 - <<'PY'
+          import re
+          html = open('slides.html').read()
+          m = re.search(r'<script>(.*)</script>', html, re.S)
+          open('/tmp/slides.js', 'w').write(m.group(1))
+          PY
+          node --check /tmp/slides.js
+          echo "slides.html JS OK"
+
+      - name: Compile Python example
+        run: python3 -m py_compile examples/python/combine.py
