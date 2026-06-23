@@ -38,3 +38,6 @@ jobs:
           PY
           node --check /tmp/slides.js
           echo "slides.html JS OK"
+
+      - name: Compile Python example
+        run: python3 -m py_compile examples/python/combine.py

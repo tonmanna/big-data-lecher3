@@ -112,6 +112,7 @@ bash data/seed/elasticsearch/load.sh
 | `scripts/verify.sh` | ตรวจว่าทุกบริการพร้อมและข้อมูลครบ |
 | `scripts/data_quality.sh` | ตรวจคุณภาพข้อมูลใน PostgreSQL |
 | `queries/` | ชุด query พร้อมรันของทั้ง 3 ฐานข้อมูล |
+| `examples/python/` | สคริปต์ Python รวมข้อมูลจาก 3 ฐานข้อมูล (`make combine`) |
 | `submissions/` | ที่ส่งงานโปรเจกต์จบของผู้เรียน |
 | [`INSTRUCTOR.md`](INSTRUCTOR.md) | คู่มือผู้สอน (แผนเวลา + แก้ปัญหาที่เจอบ่อย) |
 

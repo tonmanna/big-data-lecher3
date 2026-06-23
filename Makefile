@@ -4,7 +4,7 @@
 # ============================================================
 
 .DEFAULT_GOAL := help
-.PHONY: help up down reset load status verify quality psql mongosh logs
+.PHONY: help up down reset load status verify quality psql mongosh logs combine
 
 help: ## แสดงคำสั่งทั้งหมด
 	@echo "Big Data Workshop — คำสั่งที่ใช้บ่อย:"
@@ -33,6 +33,9 @@ verify: ## ตรวจว่าทุกบริการพร้อมแล
 
 quality: ## รันตรวจคุณภาพข้อมูล (data quality)
 	bash scripts/data_quality.sh
+
+combine: ## รันตัวอย่าง Python รวมข้อมูล 3 ฐานข้อมูล
+	pip install -q -r examples/python/requirements.txt && python examples/python/combine.py
 
 psql: ## เข้า psql ของ PostgreSQL
 	docker exec -it workshop-postgres psql -U shopadmin -d shop
